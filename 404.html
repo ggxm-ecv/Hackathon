@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="fr" onclick="jump()">
+<html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -20,21 +20,38 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/page-404.css">
 
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#010813">
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <h1>404</h1>
-  <p>Page not found</p>
+  <section class="main-404">
+    
+    <div class="main-404__game">
 
-  <div class="game">
-    <div id="character"></div>
-    <div id="block"></div>
-  </div>
-  <p>Score: <span id="scoreSpan"></span></p>
+      <div class="main-404__game-wrap-character">
 
+        <h1 class="main-404__title">404</h1>
+
+        <div id="game-character" class="main-404__game-character"></div>
+
+        <p class="main-404__subtitle">Page not found</p>
+        
+      </div>
+
+      <div id="game-block" class="game-obstacle game-block-1"></div>
+      
+      <p class="main-404__wrap-game-score">Score: <span id="game-score">0</span></p>
+
+    </div>
+
+    <div class="main-404__actions">
+      <button id="game-start" class="main-404__btn-start-game">Play a game</button>
+      <p class="main-404__actions-or">or</p>
+      <a href="/" class="main-404__btn-back-to-home">Back to Home</a>
+    </div>
+    
+  </section>
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/plugins.js"></script>
