@@ -3,6 +3,7 @@
   const character = document.getElementById("game-character");
   const obstacles = document.querySelectorAll(".game-obstacle");
   const score = document.getElementById("game-score");
+  const borderGame = document.getElementById('borderGame');
   var counter = 0;
   var rythm = new Rythm();
 
@@ -41,6 +42,7 @@
             characterBottom <= obstacleHeight
           ) {
             rythm.stop();
+            borderGame.classList.remove('borderColor3');
             elem.style.animation = "none";
             alert("Game Over. score: " + counter);
             counter = 0;
@@ -48,7 +50,10 @@
             elem.style.animation = "obstacle 6s infinite linear";
 
             // Reset Music
-            gameStart();
+            rythm = new Rythm();
+            rythm.setMusic("./sounds/Chameleon.mp3");
+            rythm.start();
+            allDances();
           }
         });
       }, 30);
@@ -68,6 +73,22 @@
           if (obstacleNewPosistion <= 0 && obstaclePosistion >= 0) {
             counter++;
             score.innerHTML = counter;
+          }
+
+          // Au dessus de 10 pts il y a des modifs 
+          if (counter>1) {
+            borderGame.classList.add('borderColor3');
+            elem.style.animation = "obstacle 5s infinite linear";
+            character.style.animation = "jump2 0.8s linear"; // PAS FINIS !
+          }
+          if (counter>20) {
+            elem.style.animation = "obstacle 4s infinite linear";
+          }
+          if (counter>30) {
+            elem.style.animation = "obstacle 3s infinite linear";
+          }
+          if (counter>35) {
+            elem.style.animation = "obstacle 2s infinite linear";
           }
 
           obstaclePosistion = obstacleNewPosistion;

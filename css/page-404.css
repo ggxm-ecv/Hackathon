@@ -48,6 +48,12 @@
   60%{bottom: 50px;}
   100%{bottom: 0;}
 }
+
+@keyframes jump2{
+  0%{bottom: 0;}
+  40%{bottom: 100px;}
+  100%{bottom: 0;}
+}
 .animateDown{
   animation: down 0.8s linear;
 }
@@ -76,6 +82,11 @@
 .main-404__game-character.animate {
   transition: none;
   animation: jump 0.8s linear;
+}
+
+.main-404__game-character.animate2 {
+  transition: none;
+  animation: jump2 0.8s linear;
 }
 
 .main-404__subtitle {
