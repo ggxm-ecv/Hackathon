@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>sprite</title>
+    <script>
+      let leftSprite = 0;
+      const marche = 2;
+      let conteneur;
+      let sprite;
+      window.onload = function(){
+        conteneur = document.getElementById('container');
+        
+        conteneur.style.left = '5px';
+        conteneur.style.top = '70px';
+        sprite = document.getElementById('contenu');
+       
+        const mouvement = function(topSprite,deplacementDiv) {
+          conteneur.style[deplacementDiv[0]] = parseFloat(conteneur.style[deplacementDiv[0]]) + deplacementDiv[1] + 'px';
+          sprite.style.top = topSprite;
+          if (leftSprite > -630) {
+            leftSprite = leftSprite - 70;
+          } else {
+            leftSprite = 0;
+          }
+          sprite.style.left = leftSprite + 'px';
+        };
+        window.onkeyup = function(event) {
+          var code = event.keyCode;
+
+          switch(code){
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+              leftSprite = 0;
+              sprite.style.left = 0;
+              sprite.style.top = '-7px';
+            break;
+          };
+        };
+
+
+        window.onkeydown = function(event){
+
+          var code = event.keyCode;
+
+          switch(code){
+            case 37:
+             
+                mouvement('-386px',['left',-marche])
+            break;
+            case 38:
+             
+              mouvement('-459px',['top',-marche])
+            break;
+            case 39:
+             
+              mouvement('-540px',['left',marche])
+            break;
+            case 40:
+               
+                mouvement('-311px',['top',marche]);
+            break;
+          };
+        };
+
+
+    };
+    </script>
+    <style>
+      #container {
+        height: 68px;
+        overflow: hidden;
+        position: absolute;
+        width: 66px;
+      }
+
+      #container img {
+        position: absolute;
+        top:-7px;
+        width: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Page 404</h1>
+    <div>
+      <div id="container" class="masque" >
+        <img id="contenu" class="sprite" src="sprite.png" alt="sprite"/>
+      </div>
+    </div>
+  </body>
+</html>

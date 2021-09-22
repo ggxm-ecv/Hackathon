@@ -19,8 +19,22 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/page-404.css">
+  
+  <meta name="theme-color" content="#fafafa">
+  <style>
+      #container {
+        height: 68px;
+        overflow: hidden;
+        position:relative;
+        width: 66px;
+      }
 
-  <meta name="theme-color" content="#010813">
+      #container img {
+        position: absolute;
+        top:-7px;
+        width: 700px;
+      }
+  </style>
 </head>
 
 <body>
@@ -41,6 +55,9 @@
 
       <div class="game-obstacles">
         <div id="game-obstacle" class="twist2 color2 game-obstacle game-block-1"></div>
+        <div id="container" class="masque" >
+          <img id="contenu" class="sprite" src="sprite.png" alt="sprite"/>
+        </div>
       </div>
       
       <p class="main-404__wrap-game-score">Score: <span id="game-score">0</span></p>
@@ -61,6 +78,71 @@
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
   <script src="js/script-404.js"></script>
+  <script>
+      let leftSprite = 0;
+      const marche = 2;
+      let conteneur;
+      let sprite;
+      window.onload = function(){
+        conteneur = document.getElementById('container');
+        
+        conteneur.style.left = '5px';
+        conteneur.style.top = '70px';
+        sprite = document.getElementById('contenu');
+       
+        const mouvement = function(topSprite,deplacementDiv) {
+          conteneur.style[deplacementDiv[0]] = parseFloat(conteneur.style[deplacementDiv[0]]) + deplacementDiv[1] + 'px';
+          sprite.style.top = topSprite;
+          if (leftSprite > -630) {
+            leftSprite = leftSprite - 70;
+          } else {
+            leftSprite = 0;
+          }
+          sprite.style.left = leftSprite + 'px';
+        };
+        window.onkeyup = function(event) {
+          var code = event.keyCode;
+
+          switch(code){
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+              leftSprite = 0;
+              sprite.style.left = 0;
+              sprite.style.top = '-7px';
+            break;
+          };
+        };
+
+
+        window.onkeydown = function(event){
+
+          var code = event.keyCode;
+
+          switch(code){
+            case 37:
+             
+                mouvement('-386px',['left',-marche])
+            break;
+            case 38:
+             
+              mouvement('-459px',['top',-marche])
+            break;
+            case 39:
+             
+              mouvement('-540px',['left',marche])
+            break;
+            case 40:
+               
+                mouvement('-311px',['top',marche]);
+            break;
+          };
+        };
+
+
+    };
+  </script>
 
 </body>
 
