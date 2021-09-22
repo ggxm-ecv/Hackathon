@@ -5,9 +5,10 @@
 }
 .game{
   width: 500px;
-  height: 200px;
+  height: 300px;
   border: 1px solid black;
   margin: auto;
+  overflow: hidden;
 }
 #character{
   width: 20px;
@@ -15,6 +16,7 @@
   background-color: red;
   position:relative;
   top: 150px;
+  left:25px;
 }
 .animate{
   animation: jump 0.8s linear;
@@ -23,6 +25,15 @@
   0%{top: 150px;}
   30%{top: 100px;}
   70%{top: 100px;}
+  100%{top: 150px;}
+}
+.animateDown{
+  animation: down 0.8s linear;
+}
+@keyframes down{
+  0%{top: 150px;}
+  30%{top: 200px;}
+  70%{top: 200px;}
   100%{top: 150px;}
 }
 
@@ -35,6 +46,17 @@
   left: 500px;
   animation: block 3s infinite linear;
 }
+
+#block2{
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 80px;
+  left: 500px;
+  animation: block 3s infinite linear;
+}
+
 @keyframes block{
   0%{left: 500px}
   100%{left: -20px}
