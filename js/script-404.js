@@ -106,6 +106,32 @@ function checkKey(e) {
     }
 }
 
+// BLOCK GENERATOR 
+
+var game = document.getElementById('game');
+
+function blockGenerator() {
+    var newDiv = document.createElement('div');
+    newDiv.style.width = '20px';
+    newDiv.style.height = '20px';
+    newDiv.style.backgroundColor = "#" + ((1<<24)*Math.random() | 0).toString(16);
+    newDiv.style.position = 'relative';
+    newDiv.style.left = '480px';
+    newDiv.style.top = '80px';
+    newDiv.style.animation = 'block 3s infinite linear';
+    game.appendChild(newDiv);
+    console.log('block added');
+}
+
+setInterval( function() {
+    let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+    if(blockLeft<45 && blockLeft>40){
+        console.log('dqddq');
+        blockGenerator();
+    }
+}, 30);
+
+
 var checkDead = setInterval(function() {
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
@@ -128,5 +154,7 @@ var checkDead = setInterval(function() {
         document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
     }
 }, 30);
+
+
 
 }, 3000);
