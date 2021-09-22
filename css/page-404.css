@@ -24,7 +24,7 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
-.game-strated .main-404__game-wrap-character {
+.game-started .main-404__game-wrap-character {
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -38,14 +38,13 @@
   line-height: 260px;
   font-weight: 400;
 }
-.game-strated .main-404__title {
+.game-started .main-404__title {
   display: none;
 }
 
 @keyframes jump{
   0%{bottom: 0;}
-  40%{bottom: 50px;}
-  60%{bottom: 50px;}
+  50%{bottom: 80px;}
   100%{bottom: 0;}
 }
 .animateDown{
@@ -69,13 +68,59 @@
   background-color: #fff7ee;
   transition: all 400ms ease-in-out;
 }
-.game-strated .main-404__game-character {
+.main-404__game-character.active {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background-color: transparent;
+}
+.game-started .main-404__game-character {
   bottom: 0;
   transform: translate(-50%,0);
 }
 .main-404__game-character.animate {
   transition: none;
-  animation: jump 0.8s linear;
+  animation: 800ms ease jump;
+}
+
+.main-404__game-character img {
+  display: none;
+  vertical-align: bottom;
+}
+.main-404__game-character img.active {
+  display: block;
+}
+
+.main-404__game-character-1 {
+  height: 80px;
+  width: 62px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: -11px 22px;
+}
+
+.main-404__game-character-2 {
+  height: 90px;
+  width: 54px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: -43px 0px;
+}
+
+.main-404__game-character-3 {
+  height: 94px;
+  width: 58px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: -9px 6px;
+}
+
+.main-404__game-character-4 {
+  height: 88px;
+  width: 52px;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: -16px 0px;
 }
 
 .main-404__subtitle {
@@ -89,7 +134,7 @@
   font-weight: 400;
   text-align: center;
 }
-.game-strated .main-404__subtitle {
+.game-started .main-404__subtitle {
   display: none;
 }
 
@@ -104,7 +149,7 @@
   padding: 16px;
   text-align: center;
 }
-.game-strated .main-404__wrap-game-score {
+.game-started .main-404__wrap-game-score {
   display: block;
 }
 
@@ -129,9 +174,8 @@
   position: absolute;
   bottom: 0;
   left: 1000px;
-  animation: obstacle 6s infinite linear;
 }
-.game-strated .game-obstacle {
+.game-started .game-obstacle {
   display: block;
 }
 
@@ -139,6 +183,22 @@
   background-color: blue;
   width: 20px;
   height: 20px;
+  animation: 6s linear 0s 1 obstacle;
+}
+
+.game-block-2 {
+  background-color: red;
+  width: 40px;
+  height: 40px;
+  animation: 6s linear 1s 1 obstacle;
+}
+
+.game-block-3 {
+  transform: scaleX(-1);
+  animation: 6s linear 4s infinite obstacle;
+}
+.game-block-3 img {
+  vertical-align: bottom;
 }
 
 

@@ -68,10 +68,43 @@
 
 					let obstacleNewPosistion = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
 
-					if (obstacleNewPosistion <= 0 && obstaclePosistion >= 0) {
+					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
 						counter++;
 						score.innerHTML = counter;
+						
+						// change perso
+						if (counter == 2) {
+							character.classList.add('active');
+							document.getElementById('character-1').classList.add('active');
+							document.getElementById('character-2').classList.remove('active');
+							document.getElementById('character-3').classList.remove('active');
+							document.getElementById('character-4').classList.remove('active');
+						} else if (counter == 12) {
+							document.getElementById('character-1').classList.remove('active');
+							document.getElementById('character-2').classList.add('active');
+							document.getElementById('character-3').classList.remove('active');
+							document.getElementById('character-4').classList.remove('active');
+						} else if (counter == 22) {
+							document.getElementById('character-1').classList.remove('active');
+							document.getElementById('character-2').classList.remove('active');
+							document.getElementById('character-3').classList.add('active');
+							document.getElementById('character-4').classList.remove('active');
+						} else if (counter == 32) {
+							document.getElementById('character-1').classList.remove('active');
+							document.getElementById('character-2').classList.remove('active');
+							document.getElementById('character-3').classList.remove('active');
+							document.getElementById('character-4').classList.add('active');
+						} else if (counter == 42) {
+							// END of the Game
+						} else if (counter == 0) {
+							// reset Game
+							character.classList.remove('active');
+							document.getElementById('character-1').classList.remove('active');
+							document.getElementById('character-2').classList.remove('active');
+							document.getElementById('character-3').classList.remove('active');
+							document.getElementById('character-4').classList.remove('active');
+						}
 
 					}
 
@@ -217,7 +250,7 @@
 
 	// Start Game
 	buttonStart.addEventListener('click', function () {
-		document.body.classList.add('game-strated');
+		document.body.classList.add('game-started');
 		gameStart();
 	});
 
