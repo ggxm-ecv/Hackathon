@@ -1,10 +1,91 @@
-var character = document.getElementById("character");
-var block = document.getElementById("block");
-var counter=0;
 
-block.style.animation = "none";
+(function () {
+    const buttonStart = document.getElementById('game-start');
+	const character = document.getElementById('game-character');
+	const obstacles = document.querySelectorAll('.game-obstacle');
+	const score = document.getElementById('game-score');
+    var counter=0;
+    var rythm = new Rythm();
 
-setTimeout(function(){
+    function gameStart() {
+
+		// Game Init
+        rythm.setMusic('./sounds/Chameleon.mp3');
+        rythm.start();
+        allDances();
+
+
+		// Game Process
+		let gameProcess = setTimeout(function(){
+
+			document.addEventListener('click', function () {
+				jump();
+			});
+	
+			var checkDead = setInterval(function () {
+
+				let characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue('bottom'));
+				let characterWidth = character.offsetWidth;
+
+				obstacles.forEach(elem => {
+
+					let obstacleLeft = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+					let obstacleWidth = elem.offsetWidth;
+					let obstacleHeight = elem.offsetHeight;
+
+					let leftTargetMax = characterWidth/2;
+					let leftTargetMin = 0-(characterWidth/2)-obstacleWidth;
+					
+					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
+                        rythm.stop();
+						elem.style.animation = 'none';
+						alert('Game Over. score: ' + counter);
+						counter = 0;
+						score.innerHTML = counter;
+						elem.style.animation = 'obstacle 6s infinite linear';
+
+                        // Reset Music
+                        rythm = new Rythm();
+                        rythm.setMusic('./sounds/Chameleon.mp3');
+                        rythm.start();
+                        allDances();
+						
+					}
+					
+				});
+
+			}, 30);
+
+
+			// foreach obstacle check if passed and add score
+
+			obstacles.forEach(elem => {
+
+				let obstaclePosistion = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+				setInterval(() => {
+
+					let obstacleNewPosistion = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+					if (obstacleNewPosistion <= 0 && obstaclePosistion >= 0) {
+
+						counter++;
+						score.innerHTML = counter;
+						
+					}
+
+					obstaclePosistion = obstacleNewPosistion;
+					
+				}, 30);
+
+				
+			});
+			
+
+		}, 400);
+		
+	}
 
 function allDances() {
     rythm.addRythm('pulse1', 'pulse', 0, 10)
@@ -74,14 +155,6 @@ function allDances() {
   })
 }
 
-var rythm = new Rythm();
-rythm.setMusic('./sounds/Chameleon.mp3');
-rythm.start();
-allDances();
-block.style.animation = "block 3s linear infinite";
-
-console.log('test');
-
 document.onkeydown = checkKey;
 function checkKey(e) {
     e = e || window.event;
@@ -123,38 +196,32 @@ function blockGenerator() {
     console.log('block added');
 }
 
-setInterval( function() {
-    let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft<45 && blockLeft>40){
-        console.log('dqddq');
-        blockGenerator();
-    }
-}, 30);
-
-
-var checkDead = setInterval(function() {
-    let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-    let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft<45 && blockLeft>5 && characterTop>=130){ // COLLISION
-        rythm.stop();
-        block.style.animation = "none";
-        // alert("Game Over. score: "+Math.floor(counter/100));
-        if (confirm("Game Over. score: "+Math.floor(counter/100))) {
-            rythm = new Rythm();
-            rythm.setMusic('./sounds/Chameleon.mp3');
-            rythm.start();
-            allDances();
-        } else {
-            // BACK TO HOME ???
-        }
-        counter=0;
-        block.style.animation = "block 3s infinite linear";
-    } else {
-        counter++;
-        document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
-    }
-}, 30);
+// setInterval( function() {
+//     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+//     if(blockLeft<45 && blockLeft>40){
+//         console.log('dqddq');
+//         blockGenerator();
+//     }
+// }, 30);
 
 
 
-}, 3000);
+	function jump() {
+		if (character.classList == 'animate') { return }
+		character.classList.add('animate');
+		setTimeout(function () {
+			character.classList.remove('animate');
+		}, 800);
+	}
+
+
+	// Start Game
+	buttonStart.addEventListener('click', function () {
+		document.body.classList.add('game-strated');
+		gameStart();
+	});
+
+
+})();
+
+
