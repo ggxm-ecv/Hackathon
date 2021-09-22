@@ -102,18 +102,25 @@
 
 /********* Obstacles *********/
 
+.game-obstacles {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+}
+
 @keyframes obstacle {
-  0%{left: 2000px}
-  100%{left: -100px}
+  0%{left: 1000px}
+  100%{left: -1000px}
 }
 
 .game-obstacle {
   display: none;
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: obstacle 8s infinite linear;
+  left: 1000px;
+  animation: obstacle 6s infinite linear;
 }
 .game-strated .game-obstacle {
   display: block;

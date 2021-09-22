@@ -2,7 +2,8 @@
 
 	const buttonStart = document.getElementById('game-start');
 	const character = document.getElementById('game-character');
-	const block = document.getElementById('game-block');
+	const obstacles = document.querySelectorAll('.game-obstacle')
+	const obstacle = document.getElementById('game-obstacle');
 	const score = document.getElementById('game-score');
 
 	var counter = 0;
@@ -21,18 +22,59 @@
 			});
 	
 			var checkDead = setInterval(function () {
-				let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue('top'));
-				let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue('left'));
-				if (blockLeft < 20 && blockLeft > -20 && characterTop >= 130) {
-					block.style.animation = 'none';
-					alert('Game Over. score: ' + Math.floor(counter / 100));
-					counter = 0;
-					block.style.animation = 'block 3s infinite linear';
-				} else {
-					counter++;
-					score.innerHTML = Math.floor(counter / 100);
-				}
+
+				let characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue('bottom'));
+				let characterWidth = character.offsetWidth;
+
+				obstacles.forEach(elem => {
+
+					let obstacleLeft = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+					let obstacleWidth = elem.offsetWidth;
+					let obstacleHeight = elem.offsetHeight;
+
+					let leftTargetMax = characterWidth/2;
+					let leftTargetMin = 0-(characterWidth/2)-obstacleWidth;
+					
+					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
+
+						elem.style.animation = 'none';
+						alert('Game Over. score: ' + counter);
+						counter = 0;
+						score.innerHTML = counter;
+						elem.style.animation = 'obstacle 6s infinite linear';
+						
+					}
+					
+				});
+
 			}, 30);
+
+
+			// foreach obstacle check if passed and add score
+
+			obstacles.forEach(elem => {
+
+				let obstaclePosistion = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+				setInterval(() => {
+
+					let obstacleNewPosistion = parseInt(window.getComputedStyle(elem).getPropertyValue('left'));
+
+					if (obstacleNewPosistion <= 0 && obstaclePosistion >= 0) {
+
+						counter++;
+						score.innerHTML = counter;
+						
+					}
+
+					obstaclePosistion = obstacleNewPosistion;
+					
+				}, 30);
+
+				
+			});
+			
 
 		}, 400);
 		
