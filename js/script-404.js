@@ -1,9 +1,9 @@
-
 (function () {
 	const buttonStart = document.getElementById('game-start');
 	const character = document.getElementById('game-character');
 	const obstacles = document.querySelectorAll('.game-obstacle');
 	const score = document.getElementById('game-score');
+	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
 	var rythm = new Rythm();
 
@@ -52,12 +52,23 @@
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 						rythm.stop();
+            document.getElementById('death').play();
+            document.getElementById('explosion').classList.add('active');
+              setTimeout(function(){
+                document.getElementById('explosion').classList.remove('active');
+              }, 600)
+            document.getElementById('gameOver').classList.remove('hide');
+            document.getElementById('scoreGameOver').classList.remove('hide');
+            character.classList.remove('active');
+            document.getElementById('character-1').classList.remove('active');
+            document.getElementById('character-2').classList.remove('active');
+            document.getElementById('character-3').classList.remove('active');
+            document.getElementById('character-4').classList.remove('active');
 						elem.style.animation = 'none';
-						alert('Game Over. score: ' + counter);
+						// alert('Game Over. score: ' + counter);
 						counter = 0;
 						score.innerHTML = counter;
 						elem.style.animation = 'obstacle 6s infinite linear';
-
 						// Reset Music
 						rythm = new Rythm();
 						rythm.setMusic('./sounds/Chameleon.mp3');
@@ -84,32 +95,43 @@
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
 						counter++;
+            document.getElementById('score').play();
 						score.innerHTML = counter;
 						
 						// change perso
 						if (counter == 2) {
+              document.getElementById('switch').play();
 							character.classList.add('active');
 							document.getElementById('character-1').classList.add('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
+							document.getElementById('character-4').classList.remove('active');
 						} else if (counter == 12) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.add('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
+              elem.style.animationDuration = "5.5s";
 						} else if (counter == 22) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.add('active');
 							document.getElementById('character-4').classList.remove('active');
+              elem.style.animationDuration = "5s";
 						} else if (counter == 32) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.add('active');
+              elem.style.animationDuration = "4.5s";
 						} else if (counter == 42) {
 							// END of the Game
+              document.getElementById('victory').play();
+              document.getElementById('applause').play();
 						} else if (counter == 0) {
 							// reset Game
 							character.classList.remove('active');
@@ -203,6 +225,7 @@
 
 
 	function jump() {
+    document.getElementById('jumpSound').play();
 		if (character.classList == 'animate') { return }
 		character.classList.add('animate');
 		setTimeout(function () {
@@ -210,14 +233,10 @@
 		}, 800);
 	}
 
-
 	// Start Game
 	buttonStart.addEventListener('click', function () {
 		document.body.classList.add('game-started');
 		gameStart();
 	});
 
-
 })();
-
-

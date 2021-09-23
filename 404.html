@@ -19,15 +19,29 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/page-404.css">
+  
+  <meta name="theme-color" content="#fafafa">
+  <style>
+      #container {
+        height: 68px;
+        overflow: hidden;
+        position:relative;
+        width: 66px;
+      }
 
-  <meta name="theme-color" content="#010813">
+      #container img {
+        position: absolute;
+        top:-7px;
+        width: 700px;
+      }
+  </style>
 </head>
 
 <body>
 
   <section class="main-404">
     
-    <div class="main-404__game">
+    <div class="main-404__game" id="borderGame">
   
       <div class="main-404__game-wrap-character">
 
@@ -38,10 +52,18 @@
           <img src="img/perso_2.gif" alt="perso 2" id="character-2" class="main-404__game-character-2">
           <img src="img/perso_3.gif" alt="perso 3" id="character-3" class="main-404__game-character-3">
           <img src="img/perso_4.gif" alt="perso 4" id="character-4" class="main-404__game-character-4">
+          <img src="img/explosion.gif" alt="explosion" id="explosion" class="main-404__game-explosion">
         </div>
 
         <p class="main-404__subtitle">Page not found</p>
         
+      </div>
+
+      <div class="main-404__game-death">
+
+        <h1 class="main-404__title-death hide" id="gameOver">GAME OVER !</h1>
+        <p class="hide" id="scoreGameOver">Votre score est de <span id="game-score-death">0</span></p>
+
       </div>
 
       <div class="game-obstacles">
@@ -139,7 +161,31 @@
       <p class="main-404__actions-or">or</p>
       <a href="/" class="main-404__btn-back-to-home">Back to Home</a>
     </div>
+
+    <audio id="jumpSound">
+      <source src="sounds/jump_short.mp3">
+    </audio>
+
+    <audio id="score">
+      <source src="sounds/score.mp3">
+    </audio>
     
+    <audio id="death">
+      <source src="sounds/death.mp3">
+    </audio>
+
+    <audio id="switch">
+      <source src="sounds/switch.mp3">
+    </audio>
+
+    <audio id="victory">
+      <source src="sounds/victory.mp3">
+    </audio>
+
+    <audio id="applause">
+      <source src="sounds/applause.mp3">
+    </audio>
+
   </section>
 
   <!-- <script src="https://unpkg.com/rythm.js/"></script> -->
