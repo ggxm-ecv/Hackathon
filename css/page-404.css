@@ -93,7 +93,7 @@
 
 .main-404__game-character-1 {
   height: 80px;
-  width: 62px;
+  width: 60px;
   overflow: hidden;
   object-fit: cover;
   object-position: -11px 22px;
@@ -188,16 +188,357 @@
 
 .game-block-2 {
   background-color: red;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   animation: 6s linear 1s 1 obstacle;
 }
 
 .game-block-3 {
-  transform: scaleX(-1);
-  animation: 6s linear 4s infinite obstacle;
+  background-color: blue;
+  width: 15px;
+  height: 30px;
+  animation: 6s linear 3s 1 obstacle;
 }
-.game-block-3 img {
+
+.game-block-4 {
+  background-color: blue;
+  width: 10px;
+  height: 40px;
+  animation: 6s linear 4s 1 obstacle;
+}
+
+.game-block-5 {
+  background-color: blue;
+  width: 30px;
+  height: 20px;
+  animation: 6s linear 5s 1 obstacle;
+}
+
+.game-block-6 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 5.9s 1 obstacle;
+}
+
+.game-block-7 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 6s 1 obstacle;
+}
+
+.game-block-8 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 6.1s 1 obstacle;
+}
+
+.game-block-9 {
+  background-color: blue;
+  width: 10px;
+  height: 30px;
+  animation: 6s linear 7.4s 1 obstacle;
+}
+
+.game-block-10 {
+  background-color: blue;
+  width: 10px;
+  height: 30px;
+  animation: 6s linear 7.46s 1 obstacle;
+}
+
+.game-block-11 {
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  animation: 6s linear 8.5s 1 obstacle;
+}
+
+.game-block-12 {
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  animation: 6s linear 8.6s 1 obstacle;
+}
+
+.game-block-13 {
+  width: 25px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 10s 1 obstacle;
+}
+.game-block-13 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-14 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 11s 1 obstacle;
+}
+
+.game-block-15 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 11.1s 1 obstacle;
+}
+
+.game-block-16 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 11.2s 1 obstacle;
+}
+
+.game-block-17 {
+  width: 20px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 12s 1 obstacle;
+}
+.game-block-17 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-18 {
+  width: 28px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 13.2s 1 obstacle;
+}
+.game-block-18 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-19 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 14.7s 1 obstacle;
+}
+
+.game-block-20 {
+  background-color: blue;
+  width: 10px;
+  height: 20px;
+  animation: 6s linear 14.8s 1 obstacle;
+}
+
+.game-block-21 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 14.9s 1 obstacle;
+}
+
+.game-block-22 {
+  width: 68px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 16s 1 obstacle;
+}
+.game-block-22 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-23 {
+  width: 18px;
+  height: auto;
+  animation: 6s linear 17.1s 1 obstacle;
+}
+.game-block-23 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-24 {
+  background-color: blue;
+  width: 30px;
+  height: 30px;
+  animation: 6s linear 18s 1 obstacle;
+}
+
+.game-block-25 {
+  width: 20px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 18.8s 1 obstacle;
+}
+.game-block-25 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-26 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 20s 1 obstacle;
+}
+
+.game-block-27 {
+  background-color: blue;
+  width: 10px;
+  height: 20px;
+  animation: 6s linear 20.1s 1 obstacle;
+}
+
+.game-block-28 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 20.2s 1 obstacle;
+}
+
+.game-block-29 {
+  width: 18px;
+  height: auto;
+  animation: 6s linear 21.6s 1 obstacle;
+}
+.game-block-29 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-30 {
+  width: 30px;
+  height: 46px;
+  animation: 6s linear 22.7s 1 obstacle;
+}
+.game-block-30 img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: -9px -12px;
+  vertical-align: bottom;
+}
+
+.game-block-31 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 23.9s 1 obstacle;
+}
+
+.game-block-32 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 24s 1 obstacle;
+}
+
+.game-block-33 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 25.6s 1 obstacle;
+}
+
+.game-block-34 {
+  background-color: blue;
+  width: 10px;
+  height: 20px;
+  animation: 6s linear 25.7s 1 obstacle;
+}
+
+.game-block-35 {
+  background-color: blue;
+  width: 10px;
+  height: 10px;
+  animation: 6s linear 25.8s 1 obstacle;
+}
+
+.game-block-36 {
+  width: 28px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 27s 1 obstacle;
+}
+.game-block-36 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-37 {
+  width: 20px;
+  height: auto;
+  transform: scaleX(-1);
+  animation: 6s linear 28.2s 1 obstacle;
+}
+.game-block-37 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-38 {
+  width: 18px;
+  height: auto;
+  animation: 6s linear 29.4s 1 obstacle;
+}
+.game-block-38 img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.game-block-39 {
+  width: 30px;
+  height: 46px;
+  animation: 6s linear 30.6s 1 obstacle;
+}
+.game-block-39 img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: -9px -12px;
+  vertical-align: bottom;
+}
+
+.game-block-40 {
+  width: 30px;
+  height: 40px;
+  animation: 6s linear 31.7s 1 obstacle;
+}
+.game-block-40 img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: -12px 0px;
+  vertical-align: bottom;
+}
+
+.game-block-41 {
+  width: 50px;
+  height: 40px;
+  animation: 6s linear 32.9s 1 obstacle;
+}
+.game-block-41 img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+  object-position: -12px 0px;
+  vertical-align: bottom;
+}
+
+.game-block-42 {
+  width: 60px;
+  height: 50px;
+  animation: 6s linear 34.2s 1 obstacle;
+}
+.game-block-42 img {
+  object-fit: cover;
+  width: 100%;
+  height: 140%;
+  transform: scaleX(-1);
+  object-position: -8px -9px;
   vertical-align: bottom;
 }
 

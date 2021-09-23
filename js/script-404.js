@@ -14,13 +14,26 @@
 		rythm.start();
 		allDances();
 
+		// pause button
+
 
 		// Game Process
 		let gameProcess = setTimeout(function () {
 
-			document.addEventListener('click', function () {
+			document.addEventListener('click', function (e) {
+				e.preventDefault();
 				jump();
 			});
+
+			document.onkeydown = checkKey;
+			function checkKey(e) {
+				e = e || window.event;
+
+				if (e.keyCode == '38' || e.keyCode == '32') {
+					e.preventDefault();
+					jump();
+				}
+			}
 
 			var checkDead = setInterval(function () {
 
@@ -34,8 +47,8 @@
 					let obstacleWidth = elem.offsetWidth;
 					let obstacleHeight = elem.offsetHeight;
 
-					let leftTargetMax = characterWidth / 2;
-					let leftTargetMin = 0 - (characterWidth / 2) - obstacleWidth;
+					let leftTargetMax = characterWidth / 2.4;
+					let leftTargetMin = 0 - (characterWidth / 2.4) - obstacleWidth;
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 						rythm.stop();
@@ -187,56 +200,6 @@
 			to: [255, 0, 255],
 		})
 	}
-
-	document.onkeydown = checkKey;
-	function checkKey(e) {
-		e = e || window.event;
-
-		if (e.keyCode == '38') {
-			console.log('en haut');
-			if (character.classList == "animate") { return }
-			character.classList.add("animate");
-			setTimeout(function () {
-				character.classList.remove("animate");
-			}, 800);
-			// up arrow
-		}
-		else if (e.keyCode == '40') {
-			console.log('en bas');
-			if (character.classList == "animateDown") { return }
-			character.classList.add("animateDown");
-			setTimeout(function () {
-				character.classList.remove("animateDown");
-			}, 800);
-			// down arrow
-		}
-	}
-
-	// BLOCK GENERATOR 
-
-	var game = document.getElementById('game');
-
-	function blockGenerator() {
-		var newDiv = document.createElement('div');
-		newDiv.style.width = '20px';
-		newDiv.style.height = '20px';
-		newDiv.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16);
-		newDiv.style.position = 'relative';
-		newDiv.style.left = '480px';
-		newDiv.style.top = '80px';
-		newDiv.style.animation = 'block 3s infinite linear';
-		game.appendChild(newDiv);
-		console.log('block added');
-	}
-
-	// setInterval( function() {
-	//     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-	//     if(blockLeft<45 && blockLeft>40){
-	//         console.log('dqddq');
-	//         blockGenerator();
-	//     }
-	// }, 30);
-
 
 
 	function jump() {
