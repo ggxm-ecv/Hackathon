@@ -41,6 +41,10 @@
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 						rythm.stop();
             document.getElementById('death').play();
+            document.getElementById('explosion').classList.add('active');
+              setTimeout(function(){
+                document.getElementById('explosion').classList.remove('active');
+              }, 600)
             document.getElementById('gameOver').classList.remove('hide');
             document.getElementById('scoreGameOver').classList.remove('hide');
             character.classList.remove('active');
@@ -92,6 +96,7 @@
 							document.getElementById('character-1').classList.add('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
+							document.getElementById('character-4').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
 						} else if (counter == 12) {
               document.getElementById('switch').play();
