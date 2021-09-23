@@ -5,8 +5,9 @@
 	const score = document.getElementById('game-score');
 	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
-	var start;
 	var rythm = new Rythm();
+	var restartCounter = 1;
+	var restartCounterEnable = false;
 
 	function gameStart() {
 
@@ -102,9 +103,22 @@
 
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
-						counter++;
+						if (restartCounter>1) {
+							counter = counter+1 / restartCounter;
+							if (restartCounterEnable == true) {
+								score.innerHTML = Math.round(counter);
+								restartCounterEnable = false;
+							} else {
+								restartCounterEnable = true;
+							}
+						} else {
+							counter++;
+							score.innerHTML = counter;
+						}
+						
+						
 						document.getElementById('score').play();
-						score.innerHTML = counter;
+						
 
 						// change perso
 						if (counter == 2) {
@@ -121,25 +135,29 @@
 							document.getElementById('character-2').classList.add('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
-							elem.style.animationDuration = "5.5s";
 						} else if (counter == 22) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.add('active');
 							document.getElementById('character-4').classList.remove('active');
-							elem.style.animationDuration = "5s";
 						} else if (counter == 32) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.add('active');
-							elem.style.animationDuration = "4.5s";
 						} else if (counter == 42) {
 							// END of the Game
 							document.getElementById('victory').play();
 							document.getElementById('applause').play();
+
+							document.getElementById('gameSuccess').classList.remove('hide');
+							document.getElementById('game-score-success').innerHTML = counter;
+							obstacles.forEach(element => {
+								element.classList.add('stop-anim');
+							});
+
 						} else if (counter == 0) {
 							// reset Game
 							character.classList.remove('active');
@@ -153,7 +171,7 @@
 
 					obstaclePosistion = obstacleNewPosistion;
 
-				}, 30);
+				}, 100);
 
 
 			});
@@ -248,13 +266,26 @@
 		if (document.body.classList == "game-started") {
 
 			rythm.stop();
+			document.body.classList.remove('game-started');
+			document.body.classList.add('game-started');
+			document.getElementById('gameSuccess').classList.add('hide');
 			document.getElementById('gameOver').classList.add('hide');
 			obstacles.forEach(element => {
-				element.classList.remove('stop-anim');
+				element.classList.add('stop-anim');
 			});
+			setTimeout(() => {
+				obstacles.forEach(element => {
+					element.classList.remove('stop-anim');
+				});
+			}, 30);
+			restartCounter++;
 			counter = 0;
 			score.innerHTML = counter;
-			gameStart();
+
+			setTimeout(() => {
+				gameStart();
+			}, 40);
+			
 
 		} else {
 
