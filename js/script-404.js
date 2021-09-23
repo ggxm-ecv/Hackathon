@@ -5,6 +5,7 @@
 	const score = document.getElementById('game-score');
 	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
+	var start ;
 	var rythm = new Rythm();
 
 	function gameStart() {
@@ -154,7 +155,9 @@
 		}, 400);
 
 	}
-
+  function gamePause(){
+rythm.stop();
+	}
 	function allDances() {
 		rythm.addRythm('pulse1', 'pulse', 0, 10)
 		rythm.addRythm('pulse2', 'pulse', 0, 10, { min: 0.1, max: 1 })
@@ -231,12 +234,21 @@
 		setTimeout(function () {
 			character.classList.remove('animate');
 		}, 800);
-	}
+	} 
+     
 
 	// Start Game
 	buttonStart.addEventListener('click', function () {
+		if(document.body.classList == "game-started"){
+			document.body.classList.remove("game-started");
+			buttonStart.innerHTML = "play a game";
+			gamePause();
+		
+		  } else {
 		document.body.classList.add('game-started');
-		gameStart();
+		buttonStart.innerHTML = "pause a game"; 
+		 gameStart();
+	}
 	});
 
 })();
