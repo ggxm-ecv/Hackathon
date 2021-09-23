@@ -3,13 +3,15 @@
 	const character = document.getElementById('game-character');
 	const obstacles = document.querySelectorAll('.game-obstacle');
 	const score = document.getElementById('game-score');
+	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
 	var rythm = new Rythm();
+  var scoreRythm = new Rythm();
 
 	function gameStart() {
 
 		// Game Init
-		rythm.setMusic('./sounds/Chameleon.mp3');
+		// rythm.setMusic('./sounds/Chameleon.mp3');
 		rythm.start();
 		allDances();
 
@@ -38,12 +40,19 @@
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 						rythm.stop();
+            document.getElementById('death').play();
+            document.getElementById('gameOver').classList.remove('hide');
+            document.getElementById('scoreGameOver').classList.remove('hide');
+            character.classList.remove('active');
+            document.getElementById('character-1').classList.remove('active');
+            document.getElementById('character-2').classList.remove('active');
+            document.getElementById('character-3').classList.remove('active');
+            document.getElementById('character-4').classList.remove('active');
 						elem.style.animation = 'none';
-						alert('Game Over. score: ' + counter);
+						// alert('Game Over. score: ' + counter);
 						counter = 0;
 						score.innerHTML = counter;
 						elem.style.animation = 'obstacle 6s infinite linear';
-
 						// Reset Music
 						rythm = new Rythm();
 						rythm.setMusic('./sounds/Chameleon.mp3');
@@ -70,32 +79,45 @@
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
 						counter++;
+            scoreRythm.setMusic('./sounds/score.mp3');
+            scoreRythm.start();
+            allDances();
+            // document.getElementById('score').play();
 						score.innerHTML = counter;
 						
 						// change perso
 						if (counter == 2) {
+              document.getElementById('switch').play();
 							character.classList.add('active');
 							document.getElementById('character-1').classList.add('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
 						} else if (counter == 12) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.add('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
+              elem.style.animation = "obstacle 5s infinite linear";
 						} else if (counter == 22) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.add('active');
 							document.getElementById('character-4').classList.remove('active');
+              elem.style.animation = "obstacle 4s infinite linear";
 						} else if (counter == 32) {
+              document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.add('active');
+              elem.style.animation = "obstacle 3s infinite linear";
 						} else if (counter == 42) {
 							// END of the Game
+              document.getElementById('victory').play();
+              document.getElementById('applause').play();
 						} else if (counter == 0) {
 							// reset Game
 							character.classList.remove('active');
@@ -120,6 +142,7 @@
 	}
 
 	function allDances() {
+    scoreRythm.addRythm('fontSize1', 'fontSize', 0, 2)
 		rythm.addRythm('pulse1', 'pulse', 0, 10)
 		rythm.addRythm('pulse2', 'pulse', 0, 10, { min: 0.1, max: 1 })
 		rythm.addRythm('pulse3', 'pulse', 0, 10, { min: 1, max: 1.75 })
@@ -190,9 +213,8 @@
 	document.onkeydown = checkKey;
 	function checkKey(e) {
 		e = e || window.event;
-
 		if (e.keyCode == '38') {
-			console.log('en haut');
+      document.getElementById('jumpSound').play();
 			if (character.classList == "animate") { return }
 			character.classList.add("animate");
 			setTimeout(function () {
@@ -200,45 +222,10 @@
 			}, 800);
 			// up arrow
 		}
-		else if (e.keyCode == '40') {
-			console.log('en bas');
-			if (character.classList == "animateDown") { return }
-			character.classList.add("animateDown");
-			setTimeout(function () {
-				character.classList.remove("animateDown");
-			}, 800);
-			// down arrow
-		}
 	}
-
-	// BLOCK GENERATOR 
-
-	var game = document.getElementById('game');
-
-	function blockGenerator() {
-		var newDiv = document.createElement('div');
-		newDiv.style.width = '20px';
-		newDiv.style.height = '20px';
-		newDiv.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16);
-		newDiv.style.position = 'relative';
-		newDiv.style.left = '480px';
-		newDiv.style.top = '80px';
-		newDiv.style.animation = 'block 3s infinite linear';
-		game.appendChild(newDiv);
-		console.log('block added');
-	}
-
-	// setInterval( function() {
-	//     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-	//     if(blockLeft<45 && blockLeft>40){
-	//         console.log('dqddq');
-	//         blockGenerator();
-	//     }
-	// }, 30);
-
-
 
 	function jump() {
+    document.getElementById('jumpSound').play();
 		if (character.classList == 'animate') { return }
 		character.classList.add('animate');
 		setTimeout(function () {
@@ -246,12 +233,10 @@
 		}, 800);
 	}
 
-
 	// Start Game
 	buttonStart.addEventListener('click', function () {
 		document.body.classList.add('game-started');
 		gameStart();
 	});
-
 
 })();

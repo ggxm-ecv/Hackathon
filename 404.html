@@ -52,10 +52,18 @@
           <img src="img/perso_2.gif" alt="perso 2" id="character-2" class="main-404__game-character-2">
           <img src="img/perso_3.gif" alt="perso 3" id="character-3" class="main-404__game-character-3">
           <img src="img/perso_4.gif" alt="perso 4" id="character-4" class="main-404__game-character-4">
+          <img src="img/explotion.gif" alt="explosion" id="explosion" class="main-404__game-explosion">
         </div>
 
         <p class="main-404__subtitle">Page not found</p>
         
+      </div>
+
+      <div class="main-404__game-death">
+
+        <h1 class="main-404__title-death hide" id="gameOver">GAME OVER !</h1>
+        <p class="hide" id="scoreGameOver">Votre score est de <span id="game-score-death">0</span></p>
+
       </div>
 
       <div class="game-obstacles">
@@ -68,7 +76,7 @@
         </div>
       </div>
       
-      <p class="main-404__wrap-game-score">Score: <span id="game-score">0</span></p>
+      <p class="main-404__wrap-game-score">Score: <span class="fontSize1" id="game-score">0</span></p>
 
     </div>
 
@@ -77,7 +85,31 @@
       <p class="main-404__actions-or">or</p>
       <a href="/" class="main-404__btn-back-to-home">Back to Home</a>
     </div>
+
+    <audio id="jumpSound">
+      <source src="sounds/jump_short.mp3">
+    </audio>
+
+    <audio id="score">
+      <source src="sounds/score.mp3">
+    </audio>
     
+    <audio id="death">
+      <source src="sounds/death.mp3">
+    </audio>
+
+    <audio id="switch">
+      <source src="sounds/switch.mp3">
+    </audio>
+
+    <audio id="victory">
+      <source src="sounds/victory.mp3">
+    </audio>
+
+    <audio id="applause">
+      <source src="sounds/applause.mp3">
+    </audio>
+
   </section>
 
   <!-- <script src="https://unpkg.com/rythm.js/"></script> -->
@@ -86,71 +118,6 @@
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
   <script src="js/script-404.js"></script>
-  <script>
-      let leftSprite = 0;
-      const marche = 2;
-      let conteneur;
-      let sprite;
-      window.onload = function(){
-        conteneur = document.getElementById('container');
-        
-        conteneur.style.left = '5px';
-        conteneur.style.top = '70px';
-        sprite = document.getElementById('contenu');
-       
-        const mouvement = function(topSprite,deplacementDiv) {
-          conteneur.style[deplacementDiv[0]] = parseFloat(conteneur.style[deplacementDiv[0]]) + deplacementDiv[1] + 'px';
-          sprite.style.top = topSprite;
-          if (leftSprite > -630) {
-            leftSprite = leftSprite - 70;
-          } else {
-            leftSprite = 0;
-          }
-          sprite.style.left = leftSprite + 'px';
-        };
-        window.onkeyup = function(event) {
-          var code = event.keyCode;
-
-          switch(code){
-            case 37:
-            case 38:
-            case 39:
-            case 40:
-              leftSprite = 0;
-              sprite.style.left = 0;
-              sprite.style.top = '-7px';
-            break;
-          };
-        };
-
-
-        window.onkeydown = function(event){
-
-          var code = event.keyCode;
-
-          switch(code){
-            case 37:
-             
-                mouvement('-386px',['left',-marche])
-            break;
-            case 38:
-             
-              mouvement('-459px',['top',-marche])
-            break;
-            case 39:
-             
-              mouvement('-540px',['left',marche])
-            break;
-            case 40:
-               
-                mouvement('-311px',['top',marche]);
-            break;
-          };
-        };
-
-
-    };
-  </script>
 
 </body>
 
