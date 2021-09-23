@@ -5,7 +5,7 @@
 	const score = document.getElementById('game-score');
 	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
-	var start ;
+	var start;
 	var rythm = new Rythm();
 
 	function gameStart() {
@@ -52,24 +52,31 @@
 					let leftTargetMin = 0 - (characterWidth / 2.4) - obstacleWidth;
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
+
 						rythm.stop();
-            document.getElementById('death').play();
-            document.getElementById('explosion').classList.add('active');
-              setTimeout(function(){
-                document.getElementById('explosion').classList.remove('active');
-              }, 600)
-            document.getElementById('gameOver').classList.remove('hide');
-            document.getElementById('scoreGameOver').classList.remove('hide');
-            character.classList.remove('active');
-            document.getElementById('character-1').classList.remove('active');
-            document.getElementById('character-2').classList.remove('active');
-            document.getElementById('character-3').classList.remove('active');
-            document.getElementById('character-4').classList.remove('active');
-						elem.style.animation = 'none';
-						// alert('Game Over. score: ' + counter);
+
+						document.getElementById('death').play();
+						document.getElementById('explosion').classList.add('active');
+						setTimeout(function () {
+							document.getElementById('explosion').classList.remove('active');
+						}, 600)
+
+						document.getElementById('gameOver').classList.remove('hide');
+						document.getElementById('game-score-death').innerHTML = counter;
+
+						character.classList.remove('active');
+						document.getElementById('character-1').classList.remove('active');
+						document.getElementById('character-2').classList.remove('active');
+						document.getElementById('character-3').classList.remove('active');
+						document.getElementById('character-4').classList.remove('active');
+
 						counter = 0;
-						score.innerHTML = counter;
-						elem.style.animation = 'obstacle 6s infinite linear';
+						// TODO on restart : score.innerHTML = counter;
+
+						obstacles.forEach(element => {
+							element.classList.add('stop-anim');
+						});
+
 						// Reset Music
 						rythm = new Rythm();
 						rythm.setMusic('./sounds/Chameleon.mp3');
@@ -96,12 +103,12 @@
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
 						counter++;
-            document.getElementById('score').play();
+						document.getElementById('score').play();
 						score.innerHTML = counter;
-						
+
 						// change perso
 						if (counter == 2) {
-              document.getElementById('switch').play();
+							document.getElementById('switch').play();
 							character.classList.add('active');
 							document.getElementById('character-1').classList.add('active');
 							document.getElementById('character-2').classList.remove('active');
@@ -109,30 +116,30 @@
 							document.getElementById('character-4').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
 						} else if (counter == 12) {
-              document.getElementById('switch').play();
+							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.add('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
-              elem.style.animationDuration = "5.5s";
+							elem.style.animationDuration = "5.5s";
 						} else if (counter == 22) {
-              document.getElementById('switch').play();
+							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.add('active');
 							document.getElementById('character-4').classList.remove('active');
-              elem.style.animationDuration = "5s";
+							elem.style.animationDuration = "5s";
 						} else if (counter == 32) {
-              document.getElementById('switch').play();
+							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.add('active');
-              elem.style.animationDuration = "4.5s";
+							elem.style.animationDuration = "4.5s";
 						} else if (counter == 42) {
 							// END of the Game
-              document.getElementById('victory').play();
-              document.getElementById('applause').play();
+							document.getElementById('victory').play();
+							document.getElementById('applause').play();
 						} else if (counter == 0) {
 							// reset Game
 							character.classList.remove('active');
@@ -155,9 +162,8 @@
 		}, 400);
 
 	}
-  function gamePause(){
-rythm.stop();
-	}
+	
+
 	function allDances() {
 		rythm.addRythm('pulse1', 'pulse', 0, 10)
 		rythm.addRythm('pulse2', 'pulse', 0, 10, { min: 0.1, max: 1 })
@@ -228,27 +234,37 @@ rythm.stop();
 
 
 	function jump() {
-    document.getElementById('jumpSound').play();
+		document.getElementById('jumpSound').play();
 		if (character.classList == 'animate') { return }
 		character.classList.add('animate');
 		setTimeout(function () {
 			character.classList.remove('animate');
 		}, 800);
-	} 
-     
+	}
+
 
 	// Start Game
 	buttonStart.addEventListener('click', function () {
-		if(document.body.classList == "game-started"){
-			document.body.classList.remove("game-started");
-			buttonStart.innerHTML = "play a game";
-			gamePause();
-		
-		  } else {
-		document.body.classList.add('game-started');
-		buttonStart.innerHTML = "pause a game"; 
-		 gameStart();
-	}
+		if (document.body.classList == "game-started") {
+
+			rythm.stop();
+			document.getElementById('gameOver').classList.add('hide');
+			obstacles.forEach(element => {
+				element.classList.remove('stop-anim');
+			});
+			counter = 0;
+			score.innerHTML = counter;
+			gameStart();
+
+		} else {
+
+			document.body.classList.add('game-started');
+			buttonStart.innerHTML = "Restart";
+			buttonStart.classList.add('restart');
+			counter = 0;
+			gameStart();
+
+		}
 	});
 
 })();

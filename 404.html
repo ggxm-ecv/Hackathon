@@ -59,10 +59,16 @@
         
       </div>
 
-      <div class="main-404__game-death">
+      <div id="gameOver" class="main-404__game-death hide">
 
-        <h1 class="main-404__title-death hide" id="gameOver">GAME OVER !</h1>
-        <p class="hide" id="scoreGameOver">Votre score est de <span id="game-score-death">0</span></p>
+        <h2 class="main-404__title-death">GAME OVER !</h2>
+        <div id="scoreGameOver">
+          <p class="game-over__wrap-score">
+            <span id="game-score-death">0</span>
+            <img class="game-over__piece" src="img/piece.gif" alt="">
+          </p>
+          <span>earned</span>
+        </div>
 
       </div>
 
