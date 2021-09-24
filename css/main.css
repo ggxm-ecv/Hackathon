@@ -48,3 +48,106 @@ body, p, li, a, button {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
+
+
+/********* Main PREZ *********/
+
+.main-prez {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: #010813;
+  padding: 32px;
+}
+
+.main-prez__title {
+  margin-top: 40px;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+}
+
+/* theme */
+
+.main-prez__theme {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.main-prez__theme-suptitle {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #fff7ee;
+  border-radius: 8px;
+  color: #010813;
+}
+
+.main-prez__theme-title {
+  margin-top: 20px;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+/* team */
+
+.main-prez__team {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.main-prez__team-suptitle {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  background-color: #fff7ee;
+  border-radius: 8px;
+  color: #010813;
+}
+
+.main-prez__team-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.main-prez__team-job {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #fff7ee;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+/* Demo */
+
+.main-prez__demo {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.main-prez__demo-suptitle {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  background-color: #fff7ee;
+  border-radius: 8px;
+  color: #010813;
+}
+
+.main-prez__demo-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+
+
