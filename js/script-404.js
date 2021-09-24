@@ -14,7 +14,15 @@
     var newImg = document.createElement('img');
     var num = Math.floor(Math.random() * (2000 - 0 + 1)) + 0;;
     newImg.src = 'img/trollface.png';
-    newImg.classList.add('trollface','blur2');
+	var randomClass = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+	if (randomClass == 1) {
+		newImg.classList.add('blur1');
+	} else if (randomClass == 2) {
+		newImg.classList.add('blur2');
+	} else if (randomClass == 3) {
+		newImg.classList.add('blur3	');
+	}
+    newImg.classList.add('trollface');
     var pos_x = Math.floor(Math.random()*(-200));
     var pos_y = Math.floor(Math.random()*(1200 - (-200) + 1)) + (-200);
     newImg.style.left = pos_x+'px';
