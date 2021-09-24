@@ -5,7 +5,7 @@
 	const score = document.getElementById('game-score');
 	const scoreDeath = document.getElementById('scoreGameOver');
 	var counter = 0;
-	var start ;
+
 	var rythm = new Rythm();
 
 	function gameStart() {
@@ -15,10 +15,8 @@
 		rythm.start();
 		allDances();
 
-		// pause button
 
-
-		// Game Process
+	 // Game Process
 		let gameProcess = setTimeout(function () {
 
 			document.addEventListener('click', function (e) {
@@ -157,6 +155,39 @@
 	}
   function gamePause(){
 rythm.stop();
+
+counter = 0;
+document.getElementById('score').play();
+score.innerHTML = counter;
+character.classList.remove('active');
+document.getElementById('character-1').classList.remove('active');
+document.getElementById('character-2').classList.remove('active');
+document.getElementById('character-3').classList.remove('active');
+document.getElementById('character-4').classList.remove('active');
+document.getElementById('character-4').classList.remove('active');
+document.getElementById('explosion').classList.remove('active');
+/* obstacles.forEach(elem => {
+	document.getElementById('death').play();
+	document.getElementById('explosion').classList.add('active');
+		setTimeout(function(){
+			document.getElementById('explosion').classList.remove('active');
+		}, 600)
+	document.getElementById('gameOver').classList.remove('hide');
+	document.getElementById('scoreGameOver').classList.remove('hide');
+	character.classList.remove('active');
+	document.getElementById('character-1').classList.remove('active');
+	document.getElementById('character-2').classList.remove('active');
+	document.getElementById('character-3').classList.remove('active');
+	document.getElementById('character-4').classList.remove('active');
+	elem.style.animation = 'none';
+   
+	elem.style.animation = 'obstacle 6s infinite linear'; */
+
+
+
+counter = 0;
+score.innerHTML = counter;
+
 	}
 	function allDances() {
 		rythm.addRythm('pulse1', 'pulse', 0, 10)
@@ -241,12 +272,16 @@ rythm.stop();
 	buttonStart.addEventListener('click', function () {
 		if(document.body.classList == "game-started"){
 			document.body.classList.remove("game-started");
+		
+			counter = 0;
+			score.innerHTML = counter;
 			buttonStart.innerHTML = "play a game";
 			gamePause();
 		
 		  } else {
 		document.body.classList.add('game-started');
-		buttonStart.innerHTML = "pause a game"; 
+
+		buttonStart.innerHTML = "restart a game"; 
 		 gameStart();
 	}
 	});
