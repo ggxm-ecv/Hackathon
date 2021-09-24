@@ -9,40 +9,40 @@
 	var restartCounter = 1;
 	var restartCounterEnable = false;
 
-  // Random image position generator 
-  function imgGenerator() {
-    var gameBg = document.getElementById('gameBackground');
-    var newImg = document.createElement('img');
-    var num = Math.floor(Math.random() * (2000 - 0 + 1)) + 0;;
-    newImg.src = 'img/trollface.png';
-	var randomClass = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-	if (randomClass == 1) {
-		newImg.classList.add('blur1');
-	} else if (randomClass == 2) {
-		newImg.classList.add('blur2');
-	} else if (randomClass == 3) {
-		newImg.classList.add('blur3');
-	}
-    newImg.classList.add('trollface');
-    var pos_x = Math.floor(Math.random()*(-200));
-    var pos_y = Math.floor(Math.random()*(1200 - (-200) + 1)) + (-200);
-    newImg.style.left = pos_x+'px';
-    newImg.style.top= pos_y+'px';
-    newImg.style.width = Math.floor(Math.random() * (7 - 3 + 1)) + 3+'%';
-    var styleEl = document.createElement('style');
-    var toppx = Math.floor(Math.random() * (1000 - (-500) + 1)) + (-500);
-    var leftpx = Math.floor(Math.random() * (2000 - 1800 + 1)) + 1800;
-    styleEl.innerHTML = `@keyframes randomImg`+num+`{
+	// Random image position generator 
+	function imgGenerator() {
+		var gameBg = document.getElementById('gameBackground');
+		var newImg = document.createElement('img');
+		var num = Math.floor(Math.random() * (2000 - 0 + 1)) + 0;;
+		newImg.src = 'img/trollface.png';
+		var randomClass = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+		if (randomClass == 1) {
+			newImg.classList.add('blur1');
+		} else if (randomClass == 2) {
+			newImg.classList.add('blur2');
+		} else if (randomClass == 3) {
+			newImg.classList.add('blur3');
+		}
+		newImg.classList.add('trollface');
+		var pos_x = Math.floor(Math.random() * (-200));
+		var pos_y = Math.floor(Math.random() * (1200 - (-200) + 1)) + (-200);
+		newImg.style.left = pos_x + 'px';
+		newImg.style.top = pos_y + 'px';
+		newImg.style.width = Math.floor(Math.random() * (7 - 3 + 1)) + 3 + '%';
+		var styleEl = document.createElement('style');
+		var toppx = Math.floor(Math.random() * (1000 - (-500) + 1)) + (-500);
+		var leftpx = Math.floor(Math.random() * (2000 - 1800 + 1)) + 1800;
+		styleEl.innerHTML = `@keyframes randomImg` + num + `{
       0%{transform:rotate(0deg)}
-      100%{top:`+toppx+`px;left:`+leftpx+`px;transform:rotate(360deg)}
+      100%{top:`+ toppx + `px;left:` + leftpx + `px;transform:rotate(360deg)}
     }`;
-    document.head.appendChild(styleEl);
-	var animTime = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
-    newImg.style.animation = 'randomImg'+num+' '+animTime+'s linear infinite';
-    gameBg.appendChild(newImg);
-  }
+		document.head.appendChild(styleEl);
+		var animTime = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
+		newImg.style.animation = 'randomImg' + num + ' ' + animTime + 's linear infinite';
+		gameBg.appendChild(newImg);
+	}
 
-  imgGenerator();
+	imgGenerator();
 
 	function gameStart() {
 
@@ -88,34 +88,34 @@
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 
-						rythm.stop();
+						// rythm.stop();
 
-						document.getElementById('death').play();
-						document.getElementById('explosion').classList.add('active');
-						setTimeout(function () {
-							document.getElementById('explosion').classList.remove('active');
-						}, 600)
+						// document.getElementById('death').play();
+						// document.getElementById('explosion').classList.add('active');
+						// setTimeout(function () {
+						// 	document.getElementById('explosion').classList.remove('active');
+						// }, 600)
 
-						document.getElementById('gameOver').classList.remove('hide');
-						document.getElementById('game-score-death').innerHTML = counter;
+						// document.getElementById('gameOver').classList.remove('hide');
+						// document.getElementById('game-score-death').innerHTML = counter;
 
-						character.classList.remove('active');
-						document.getElementById('character-1').classList.remove('active');
-						document.getElementById('character-2').classList.remove('active');
-						document.getElementById('character-3').classList.remove('active');
-						document.getElementById('character-4').classList.remove('active');
+						// character.classList.remove('active');
+						// document.getElementById('character-1').classList.remove('active');
+						// document.getElementById('character-2').classList.remove('active');
+						// document.getElementById('character-3').classList.remove('active');
+						// document.getElementById('character-4').classList.remove('active');
 
-						counter = 0;
+						// counter = 0;
 
-						obstacles.forEach(element => {
-							element.classList.add('stop-anim');
-						});
+						// obstacles.forEach(element => {
+						// 	element.classList.add('stop-anim');
+						// });
 
-						// Reset Music
-						rythm = new Rythm();
-						rythm.setMusic('./sounds/Chameleon.mp3');
-						rythm.start();
-						allDances();
+						// // Reset Music
+						// rythm = new Rythm();
+						// rythm.setMusic('./sounds/Chameleon.mp3');
+						// rythm.start();
+						// allDances();
 
 					}
 
@@ -136,10 +136,11 @@
 
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
-						if (restartCounter>1) {
-							counter = counter+1 / restartCounter;
+						if (restartCounter > 1) {
+							counter = counter + 1 / restartCounter;
 							if (restartCounterEnable == true) {
 								score.innerHTML = Math.round(counter);
+								imgGenerator();
 								restartCounterEnable = false;
 							} else {
 								restartCounterEnable = true;
@@ -147,12 +148,13 @@
 						} else {
 							counter++;
 							score.innerHTML = counter;
+							imgGenerator();
 						}
-						
-						
+
+
 						document.getElementById('score').play();
 
-						imgGenerator();
+						
 
 						// change perso
 						if (counter == 2) {
@@ -162,25 +164,31 @@
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
-							document.getElementById('character-4').classList.remove('active');
+							document.getElementById('section-main-404').classList.add('bgcolor1');
 						} else if (counter == 12) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.add('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.remove('active');
+							document.getElementById('section-main-404').classList.remove('bgcolor1');
+							document.getElementById('section-main-404').classList.add('bgcolor2');
 						} else if (counter == 22) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.add('active');
 							document.getElementById('character-4').classList.remove('active');
+							document.getElementById('section-main-404').classList.remove('bgcolor2');
+							document.getElementById('section-main-404').classList.add('bgcolor3');
 						} else if (counter == 32) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
 							document.getElementById('character-2').classList.remove('active');
 							document.getElementById('character-3').classList.remove('active');
 							document.getElementById('character-4').classList.add('active');
+							document.getElementById('section-main-404').classList.remove('bgcolor3');
+							document.getElementById('section-main-404').classList.add('bgcolor4');
 						} else if (counter == 42) {
 							// END of the Game
 							document.getElementById('victory').play();
@@ -214,7 +222,7 @@
 		}, 400);
 
 	}
-	
+
 
 	function allDances() {
 		rythm.addRythm('pulse1', 'pulse', 0, 10)
@@ -238,6 +246,22 @@
 		rythm.addRythm('color3', 'color', 0, 10, {
 			from: [255, 255, 0],
 			to: [255, 0, 0],
+		})
+		rythm.addRythm('bgcolor1', 'color', 0, 6, {
+			from: [1, 8, 19],
+			to: [16, 48, 99],
+		})
+		rythm.addRythm('bgcolor2', 'color', 0, 6, {
+			from: [16, 48, 99],
+			to: [61, 8, 123],
+		})
+		rythm.addRythm('bgcolor3', 'color', 0, 6, {
+			from: [61, 8, 123],
+			to: [255, 0, 228],
+		})
+		rythm.addRythm('bgcolor4', 'color', 0, 6, {
+			from: [255, 0, 228],
+			to: [223, 46, 46],
 		})
 		rythm.addRythm('borderColor1', 'borderColor', 0, 10)
 		rythm.addRythm('borderColor2', 'borderColor', 0, 10, {
@@ -316,10 +340,21 @@
 			counter = 0;
 			score.innerHTML = counter;
 
+			document.getElementById('gameBackground').innerHTML = '';
+			document.getElementById('section-main-404').classList.remove('bgcolor1');
+			document.getElementById('section-main-404').classList.remove('bgcolor2');
+			document.getElementById('section-main-404').classList.remove('bgcolor3');
+			document.getElementById('section-main-404').classList.remove('bgcolor4');
+			character.classList.remove('active');
+			document.getElementById('character-1').classList.remove('active');
+			document.getElementById('character-2').classList.remove('active');
+			document.getElementById('character-3').classList.remove('active');
+			document.getElementById('character-4').classList.remove('active');
+
 			setTimeout(() => {
 				gameStart();
 			}, 40);
-			
+
 
 		} else {
 
