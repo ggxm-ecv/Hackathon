@@ -88,35 +88,31 @@
 
 					if (obstacleLeft < leftTargetMax && obstacleLeft > leftTargetMin && characterBottom <= obstacleHeight) {
 
-						// rythm.stop();
+						rythm.stop();
 
-						// document.getElementById('death').play();
-						// document.getElementById('explosion').classList.add('active');
-						// setTimeout(function () {
-						// 	document.getElementById('explosion').classList.remove('active');
-						// }, 600)
+						document.getElementById('death').play();
+						document.getElementById('explosion').classList.add('active');
+						setTimeout(function () {
+							document.getElementById('explosion').classList.remove('active');
+						}, 600)
 
-						// document.getElementById('gameOver').classList.remove('hide');
-						// document.getElementById('game-score-death').innerHTML = counter;
+						document.getElementById('gameOver').classList.remove('hide');
+						document.getElementById('game-score-death').innerHTML = counter;
 
-						// character.classList.remove('active');
-						// document.getElementById('character-1').classList.remove('active');
-						// document.getElementById('character-2').classList.remove('active');
-						// document.getElementById('character-3').classList.remove('active');
-						// document.getElementById('character-4').classList.remove('active');
+						character.classList.remove('active');
+						document.getElementById('character-1').classList.remove('active');
+						document.getElementById('character-2').classList.remove('active');
+						document.getElementById('character-3').classList.remove('active');
+						document.getElementById('character-4').classList.remove('active');
+						document.getElementById('borderGame').classList.remove('borderColor2');
 
-						// counter = 0;
+						counter = 0;
 
-						// obstacles.forEach(element => {
-						// 	element.classList.add('stop-anim');
-						// });
+						obstacles.forEach(element => {
+							element.classList.add('stop-anim');
+						});
 
-						// // Reset Music
-						// rythm = new Rythm();
-						// rythm.setMusic('./sounds/Chameleon.mp3');
-						// rythm.start();
-						// allDances();
-
+			
 					}
 
 				});
@@ -173,6 +169,7 @@
 							document.getElementById('character-4').classList.remove('active');
 							document.getElementById('section-main-404').classList.remove('bgcolor1');
 							document.getElementById('section-main-404').classList.add('bgcolor2');
+							document.getElementById('borderGame').classList.add('borderColor2');
 						} else if (counter == 22) {
 							document.getElementById('switch').play();
 							document.getElementById('character-1').classList.remove('active');
@@ -324,6 +321,7 @@
 		if (document.body.classList == "game-started") {
 
 			rythm.stop();
+			
 			document.body.classList.remove('game-started');
 			document.body.classList.add('game-started');
 			document.getElementById('gameSuccess').classList.add('hide');
