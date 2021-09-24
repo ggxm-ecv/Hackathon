@@ -89,6 +89,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 30px;
 }
 
+.txt-color-blue {
+  color: #5bb6e1;
+}
+
 /* team */
 
 .main-prez__team {
