@@ -97,7 +97,7 @@
 						}, 600)
 
 						document.getElementById('gameOver').classList.remove('hide');
-						document.getElementById('game-score-death').innerHTML = counter;
+						document.getElementById('game-score-death').innerHTML = Math.round(counter);
 
 						character.classList.remove('active');
 						document.getElementById('character-1').classList.remove('active');
@@ -142,7 +142,8 @@
 								restartCounterEnable = true;
 							}
 						} else {
-							counter++;
+							// counter++;
+							counter = Math.round(counter) + 1;
 							score.innerHTML = counter;
 							imgGenerator();
 						}
@@ -336,7 +337,7 @@
 			}, 30);
 			restartCounter++;
 			counter = 0;
-			score.innerHTML = counter;
+			score.innerHTML = Math.round(counter);
 
 			document.getElementById('gameBackground').innerHTML = '';
 			document.getElementById('section-main-404').classList.remove('bgcolor1');
