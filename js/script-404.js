@@ -8,6 +8,33 @@
 	var start ;
 	var rythm = new Rythm();
 
+  // Random image position generator 
+  function imgGenerator() {
+    var gameBg = document.getElementById('gameBackground');
+    var newImg = document.createElement('img');
+    var num = Math.floor(Math.random() * (2000 - 0 + 1)) + 0;;
+    newImg.src = 'img/trollface.png';
+    newImg.classList.add('trollface','blur2');
+    var pos_x = Math.floor(Math.random()*(-200));
+    var pos_y = Math.floor(Math.random()*(1200 - (-200) + 1)) + (-200);
+    newImg.style.left = pos_x+'px';
+    newImg.style.top= pos_y+'px';
+    newImg.style.width = Math.floor(Math.random() * (7 - 3 + 1)) + 3+'%';
+    var styleEl = document.createElement('style');
+    var toppx = Math.floor(Math.random() * (1000 - (-500) + 1)) + (-500);
+    var leftpx = Math.floor(Math.random() * (2000 - 1800 + 1)) + 1800;
+    styleEl.innerHTML = `@keyframes randomImg`+num+`{
+      0%{transform:rotate(0deg)}
+      100%{top:`+toppx+`px;left:`+leftpx+`px;transform:rotate(360deg)}
+    }`;
+    document.head.appendChild(styleEl);
+	var animTime = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
+    newImg.style.animation = 'randomImg'+num+' '+animTime+'s linear infinite';
+    gameBg.appendChild(newImg);
+  }
+
+  imgGenerator();
+
 	function gameStart() {
 
 		// Game Init
@@ -16,7 +43,6 @@
 		allDances();
 
 		// pause button
-
 
 		// Game Process
 		let gameProcess = setTimeout(function () {
@@ -69,12 +95,12 @@
 						// alert('Game Over. score: ' + counter);
 						counter = 0;
 						score.innerHTML = counter;
-						elem.style.animation = 'obstacle 6s infinite linear';
-						// Reset Music
-						rythm = new Rythm();
-						rythm.setMusic('./sounds/Chameleon.mp3');
-						rythm.start();
-						allDances();
+						// elem.style.animation = 'obstacle 6s infinite linear';
+						// // Reset Music
+						// rythm = new Rythm();
+						// rythm.setMusic('./sounds/Chameleon.mp3');
+						// rythm.start();
+						// allDances();
 
 					}
 
@@ -96,6 +122,7 @@
 					if (obstacleNewPosistion <= -20 && obstaclePosistion >= -20) {
 
 						counter++;
+            imgGenerator();
             document.getElementById('score').play();
 						score.innerHTML = counter;
 						
