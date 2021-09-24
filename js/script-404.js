@@ -9,6 +9,41 @@
 	var restartCounter = 1;
 	var restartCounterEnable = false;
 
+  // Random image position generator 
+  function imgGenerator() {
+    var gameBg = document.getElementById('gameBackground');
+    var newImg = document.createElement('img');
+    var num = Math.floor(Math.random() * (2000 - 0 + 1)) + 0;;
+    newImg.src = 'img/trollface.png';
+	var randomClass = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+	if (randomClass == 1) {
+		newImg.classList.add('blur1');
+	} else if (randomClass == 2) {
+		newImg.classList.add('blur2');
+	} else if (randomClass == 3) {
+		newImg.classList.add('blur3');
+	}
+    newImg.classList.add('trollface');
+    var pos_x = Math.floor(Math.random()*(-200));
+    var pos_y = Math.floor(Math.random()*(1200 - (-200) + 1)) + (-200);
+    newImg.style.left = pos_x+'px';
+    newImg.style.top= pos_y+'px';
+    newImg.style.width = Math.floor(Math.random() * (7 - 3 + 1)) + 3+'%';
+    var styleEl = document.createElement('style');
+    var toppx = Math.floor(Math.random() * (1000 - (-500) + 1)) + (-500);
+    var leftpx = Math.floor(Math.random() * (2000 - 1800 + 1)) + 1800;
+    styleEl.innerHTML = `@keyframes randomImg`+num+`{
+      0%{transform:rotate(0deg)}
+      100%{top:`+toppx+`px;left:`+leftpx+`px;transform:rotate(360deg)}
+    }`;
+    document.head.appendChild(styleEl);
+	var animTime = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
+    newImg.style.animation = 'randomImg'+num+' '+animTime+'s linear infinite';
+    gameBg.appendChild(newImg);
+  }
+
+  imgGenerator();
+
 	function gameStart() {
 
 		// Game Init
@@ -17,7 +52,6 @@
 		allDances();
 
 		// pause button
-
 
 		// Game Process
 		let gameProcess = setTimeout(function () {
@@ -72,7 +106,6 @@
 						document.getElementById('character-4').classList.remove('active');
 
 						counter = 0;
-						// TODO on restart : score.innerHTML = counter;
 
 						obstacles.forEach(element => {
 							element.classList.add('stop-anim');
@@ -118,7 +151,8 @@
 						
 						
 						document.getElementById('score').play();
-						
+
+						imgGenerator();
 
 						// change perso
 						if (counter == 2) {

@@ -48,21 +48,6 @@
   100%{bottom: 0;}
 }
 
-@keyframes jump2{
-  0%{bottom: 0;}
-  40%{bottom: 100px;}
-  100%{bottom: 0;}
-}
-.animateDown{
-  animation: down 0.8s linear;
-}
-@keyframes down{
-  0%{top: 150px;}
-  30%{top: 200px;}
-  70%{top: 200px;}
-  100%{top: 150px;}
-}
-
 .main-404__game-character {
   position: absolute;
   bottom: 50%;
@@ -258,6 +243,12 @@
   line-height: 40px;
 }
 
+
+/********* Background *********/ 
+
+.trollface {
+  position: absolute;
+}
 
 /********* Obstacles *********/
 
