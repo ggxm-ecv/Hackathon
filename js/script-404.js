@@ -28,7 +28,7 @@
 		var pos_y = Math.floor(Math.random() * (1200 - (-200) + 1)) + (-200);
 		newImg.style.left = pos_x + 'px';
 		newImg.style.top = pos_y + 'px';
-		newImg.style.width = Math.floor(Math.random() * (7 - 3 + 1)) + 3 + '%';
+		newImg.style.width = Math.floor(Math.random() * (5 - 2 + 1)) + 2 + '%';
 		var styleEl = document.createElement('style');
 		var toppx = Math.floor(Math.random() * (1000 - (-500) + 1)) + (-500);
 		var leftpx = Math.floor(Math.random() * (2000 - 1800 + 1)) + 1800;
@@ -348,6 +348,7 @@
 			document.getElementById('character-2').classList.remove('active');
 			document.getElementById('character-3').classList.remove('active');
 			document.getElementById('character-4').classList.remove('active');
+			document.getElementById('borderGame').classList.remove('borderColor2');
 
 			setTimeout(() => {
 				gameStart();
